@@ -1,17 +1,36 @@
 {% load static %}
+{% with request.resolver_match.view_name as view_name %}
 <header>
-  <img src="{% static 'img/logo.png' %}" height="50" alt="">
   <nav>
-    <ul>
-      <li>
-        <a href="{% url 'homepage:index' %}">Главная</a>  
-      </li>
-      <li>
-        <a href="{% url 'ice_cream:ice_cream_list' %}">Каталог мороженого</a>       
-      </li>
-      <li>
-        <a href="{% url 'about:description' %}">О проекте</a>
-      </li>
-    </ul>
+    <div>
+      <div>
+      <span></span>
+      </div>
+      <div>
+        <ul>
+          {% with request.resolver_match.view_name as view.name %}
+            <li>
+              <a href="{% url 'homepage:index' %}">
+                Главная
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'ice_cream:ice_cream_list' %}">
+                Каталог мороженого
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'about:description' %}">   
+                О проекте
+              </a>
+            </li>
+          {% endwith %}   
+        </ul>   
+      </div>
+      <a href="{% url 'homepage:index' %}">
+        <img src="{% static 'img/logo.png' %}" height="50">
+      </a>
+    </div>  
   </nav>
 </header>
+{% endwith %}
